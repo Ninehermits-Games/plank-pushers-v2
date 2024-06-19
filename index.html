@@ -83,8 +83,10 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
       } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=390, height=844, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
       }
 
       loadingBar.style.display = "block";
