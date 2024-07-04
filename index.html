@@ -119,6 +119,13 @@
     </script>
     <script>
       if (window.Telegram.WebApp) {
+        window.Telegram.WebApp.expand();
+        window.addEventListener("touchmove", (e) => e.preventDefault(), {
+          passive: false,
+        });
+        window.scrollTo(0, 100);
+        window.Telegram.WebApp.ready();
+
         window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
           console.log("#qrTextReceived", obj);
           if (window.unityInstance) {
@@ -129,15 +136,13 @@
             );
           }
         });
+        // const overflow = 100;
+        // document.body.style.overflowY = "hidden";
+        // document.body.style.marginTop = `${overflow}px`;
+        // document.body.style.height = window.innerHeight + overflow + "px";
+        // document.body.style.paddingBottom = `${overflow}px`;
+        // window.scrollTo(0, overflow);
       }
-    </script>
-    <script>
-      const overflow = 100;
-      document.body.style.overflowY = "hidden";
-      document.body.style.marginTop = `${overflow}px`;
-      document.body.style.height = window.innerHeight + overflow + "px";
-      document.body.style.paddingBottom = `${overflow}px`;
-      window.scrollTo(0, overflow);
     </script>
   </body>
 </html>
