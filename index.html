@@ -126,16 +126,16 @@
         window.scrollTo(0, 100);
         window.Telegram.WebApp.ready();
 
-        window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
-          console.log("#qrTextReceived", obj);
-          if (window.unityInstance) {
-            window.unityInstance.SendMessage(
-              "TelegramController",
-              "OnQrDetected",
-              obj.data
-            );
-          }
-        });
+        // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
+        //   console.log("#qrTextReceived", obj);
+        //   if (window.unityInstance) {
+        //     window.unityInstance.SendMessage(
+        //       "TelegramController",
+        //       "OnQrDetected",
+        //       obj.data
+        //     );
+        //   }
+        // });
       }
     </script>
   </body>
