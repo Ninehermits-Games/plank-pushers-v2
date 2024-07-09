@@ -125,6 +125,19 @@
         });
         window.scrollTo(0, 100);
         window.Telegram.WebApp.ready();
+        window.addEventListener("ready", async function () {
+          {
+            console.log("ready");
+            const data = await fetch(
+              "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
+              {
+                method: "POST",
+                body: window.Telegram.WebApp.initData,
+              }
+            );
+            console.log(await data.json());
+          }
+        });
 
         // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
         //   console.log("#qrTextReceived", obj);
