@@ -79,7 +79,7 @@ body {
   /* background: url("progress-bar-full-dark.png") no-repeat center; */
   height: 100%;
   background-color: #e7863c;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   overflow: hidden;
   justify-content: center;
   align-items: center;
