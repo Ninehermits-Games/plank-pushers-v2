@@ -93,10 +93,10 @@ body {
 #unity-progress-bar-value {
   position: absolute;
   left: 50%;
-  top: 45%;
+  top: 35%;
   transform: translateX(-50%);
   color: white;
-  font-family: Arial;
+  font-family: "Slackey", sans-serif;
   /* margin-top: 10px; */
 }
 
