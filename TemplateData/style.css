@@ -68,10 +68,8 @@ body {
   border-color: #535353;
   border-width: 3px;
   border-style: solid;
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
-  /* padding-left: 1%;
-  padding-right: 1%; */
 }
 
 #unity-progress-bar-full {
@@ -80,11 +78,8 @@ body {
   /* margin-top: 10px; */
   /* background: url("progress-bar-full-dark.png") no-repeat center; */
   height: 100%;
-  /* background: url("progress-bar-full-dark.png") no-repeat left;
-  background-size: 100% 80%; */
   background-color: #e7863c;
-  /* margin-left: 1%; */
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
   justify-content: center;
   align-items: center;
