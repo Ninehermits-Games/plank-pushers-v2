@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="content-encoding" content="gzip" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
     <title>Plank Pushers</title>
@@ -130,17 +131,15 @@
       document.body.appendChild(script);
     </script>
     <script>
-      window.addEventListener("ready", async function () {
+	window.Telegram.WebApp.ready();
+	window.addEventListener("ready", async function () {
 	      const data = await fetch(
 		      "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
 		      { method: "POST", body: window.Telegram.WebApp.initData },
 	      ).then(res => res.json());
         console.log(data);
       });
-    </script>
-    <script>
-      if (window.Telegram.WebApp) {   
-        window.Telegram.WebApp.ready();
+      	if (window.Telegram.WebApp) {   
         window.Telegram.WebApp.expand();
         window.addEventListener("touchmove", (e) => e.preventDefault(), {
           passive: false,
