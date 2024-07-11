@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="content-encoding" content="gzip" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
     <title>Plank Pushers</title>
@@ -130,42 +131,33 @@
       document.body.appendChild(script);
     </script>
     <script>
-      if (window.Telegram.WebApp) {
-        if(window.Telegram.WebApp.initData){
-          const values = window.Telegram.WebApp.initData;
-          (async (values) => {
-            const data = await fetch(
-              "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
-              {
-                method: "POST",
-                body: values,
-              }
-            );
-            const response = await data.json();
-            console.log({response});  
-          })(values);
-        }
-        
-        window.Telegram.WebApp.expand();
-        window.addEventListener("touchmove", (e) => e.preventDefault(), {
-          passive: false,
-        });
-        window.scrollTo(0, 100);
-
-        
-        //window.Telegram.WebApp.ready();
-        
-
-        // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
-        //   console.log("#qrTextReceived", obj);
-        //   if (window.unityInstance) {
-        //     window.unityInstance.SendMessage(
-        //       "TelegramController",
-        //       "OnQrDetected",
-        //       obj.data
-        //     );
-        //   }
-        // });
+      	if (window.Telegram.WebApp) {   
+		window.Telegram.WebApp.ready();
+	        window.Telegram.WebApp.expand();
+	        window.addEventListener("touchmove", (e) => e.preventDefault(), {
+	          passive: false,
+	        });
+	        window.scrollTo(0, 100);
+		if(window.Telegram.WebApp.initData && window.Telegram.WebApp.initDataUnsafe){ 
+			console.log("initData", window.Telegram.WebApp.initData);
+			console.log("initDataUnsafe", window.Telegram.WebApp.initDataUnsafe);
+		}
+		// window.Telegram.WebApp.OnEvent("web_app_ready", async ()=>{
+		// 	const data = await fetch(
+		// 	      "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
+		// 	      { method: "POST", body: window.Telegram.WebApp.initData },
+		//       ).then(res => res.json());
+		// });
+	        // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
+	        //   console.log("#qrTextReceived", obj);
+	        //   if (window.unityInstance) {
+	        //     window.unityInstance.SendMessage(
+	        //       "TelegramController",
+	        //       "OnQrDetected",
+	        //       obj.data
+	        //     );
+	        //   }
+	        // });
       }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
