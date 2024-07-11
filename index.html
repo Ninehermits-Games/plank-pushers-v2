@@ -131,25 +131,22 @@
     </script>
     <script>
       if (window.Telegram.WebApp) {
-        window.addEventListener("ready", async function () {
-          {
-            console.log("ready");
-            const data = await fetch(
+        const data = await fetch(
               "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
               {
                 method: "POST",
                 body: window.Telegram.WebApp.initData,
               }
             );
-            console.log(await data.json());
-          }
-        });
+        console.log(await data.json());
         window.Telegram.WebApp.expand();
         window.addEventListener("touchmove", (e) => e.preventDefault(), {
           passive: false,
         });
         window.scrollTo(0, 100);
-        window.Telegram.WebApp.ready();
+
+        
+        //window.Telegram.WebApp.ready();
         
 
         // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
