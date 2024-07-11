@@ -130,32 +130,22 @@
       document.body.appendChild(script);
     </script>
     <script>
-      if (window.Telegram.WebApp) {
-        if(window.Telegram.WebApp.initData){
-          const values = window.Telegram.WebApp.initData;
-          (async (values) => {
-            const data = await fetch(
-              "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
-              {
-                method: "POST",
-                body: values,
-              }
-            );
-            const response = await data.json();
-            console.log({response});  
-          })(values);
-        }
-        
+      window.addEventListener("ready", async function () {
+	      const data = await fetch(
+		      "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
+		      { method: "POST", body: window.Telegram.WebApp.initData },
+	      ).then(res => res.json());
+        console.log(data);
+      });
+    </script>
+    <script>
+      if (window.Telegram.WebApp) {   
+        window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
         window.addEventListener("touchmove", (e) => e.preventDefault(), {
           passive: false,
         });
         window.scrollTo(0, 100);
-
-        
-        //window.Telegram.WebApp.ready();
-        
-
         // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
         //   console.log("#qrTextReceived", obj);
         //   if (window.unityInstance) {
