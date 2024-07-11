@@ -131,12 +131,6 @@
     </script>
     <script>
       if (window.Telegram.WebApp) {
-        window.Telegram.WebApp.expand();
-        window.addEventListener("touchmove", (e) => e.preventDefault(), {
-          passive: false,
-        });
-        window.scrollTo(0, 100);
-        window.Telegram.WebApp.ready();
         window.addEventListener("ready", async function () {
           {
             console.log("ready");
@@ -150,6 +144,13 @@
             console.log(await data.json());
           }
         });
+        window.Telegram.WebApp.expand();
+        window.addEventListener("touchmove", (e) => e.preventDefault(), {
+          passive: false,
+        });
+        window.scrollTo(0, 100);
+        window.Telegram.WebApp.ready();
+        
 
         // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
         //   console.log("#qrTextReceived", obj);
