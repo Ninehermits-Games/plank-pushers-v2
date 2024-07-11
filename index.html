@@ -131,30 +131,30 @@
       document.body.appendChild(script);
     </script>
     <script>
-	window.Telegram.WebApp.ready();
-	window.addEventListener("ready", async function () {
-	      const data = await fetch(
-		      "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
-		      { method: "POST", body: window.Telegram.WebApp.initData },
-	      ).then(res => res.json());
-        console.log(data);
-      });
       	if (window.Telegram.WebApp) {   
-        window.Telegram.WebApp.expand();
-        window.addEventListener("touchmove", (e) => e.preventDefault(), {
-          passive: false,
-        });
-        window.scrollTo(0, 100);
-        // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
-        //   console.log("#qrTextReceived", obj);
-        //   if (window.unityInstance) {
-        //     window.unityInstance.SendMessage(
-        //       "TelegramController",
-        //       "OnQrDetected",
-        //       obj.data
-        //     );
-        //   }
-        // });
+		window.Telegram.WebApp.ready();
+	        window.Telegram.WebApp.expand();
+	        window.addEventListener("touchmove", (e) => e.preventDefault(), {
+	          passive: false,
+	        });
+	        window.scrollTo(0, 100);
+	
+		window.Telegram.WebApp.OnEvent("web_app_ready", async ()=>{
+			const data = await fetch(
+			      "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
+			      { method: "POST", body: window.Telegram.WebApp.initData },
+		      ).then(res => res.json());
+		});
+	        // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
+	        //   console.log("#qrTextReceived", obj);
+	        //   if (window.unityInstance) {
+	        //     window.unityInstance.SendMessage(
+	        //       "TelegramController",
+	        //       "OnQrDetected",
+	        //       obj.data
+	        //     );
+	        //   }
+	        // });
       }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
