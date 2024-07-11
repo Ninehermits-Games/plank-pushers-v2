@@ -132,17 +132,18 @@
     <script>
       if (window.Telegram.WebApp) {
         if(window.Telegram.WebApp.initData){
-          (async () => {
+          const values = window.Telegram.WebApp.initData;
+          (async (values) => {
             const data = await fetch(
               "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
               {
                 method: "POST",
-                body: window.Telegram.WebApp.initData,
+                body: values,
               }
             );
             const response = await data.json();
             console.log({response});  
-          })();
+          })(values);
         }
         
         window.Telegram.WebApp.expand();
