@@ -138,13 +138,18 @@
 	          passive: false,
 	        });
 	        window.scrollTo(0, 100);
-	
-		window.Telegram.WebApp.OnEvent("web_app_ready", async ()=>{
-			const data = await fetch(
-			      "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
-			      { method: "POST", body: window.Telegram.WebApp.initData },
-		      ).then(res => res.json());
-		});
+
+		if(Telegram.WebApp.initData && Telegram.WebApp.initDataUnsafe){
+			console.log("initData",Telegram.WebApp.initData);
+			console.log("initDataUnsafe,Telegram.WebApp.initDataUnsafe);
+		}
+		
+		// window.Telegram.WebApp.OnEvent("web_app_ready", async ()=>{
+		// 	const data = await fetch(
+		// 	      "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
+		// 	      { method: "POST", body: window.Telegram.WebApp.initData },
+		//       ).then(res => res.json());
+		// });
 	        // window.Telegram.WebApp.onEvent("qrTextReceived", async (obj) => {
 	        //   console.log("#qrTextReceived", obj);
 	        //   if (window.unityInstance) {
