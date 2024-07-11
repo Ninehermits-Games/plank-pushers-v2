@@ -131,14 +131,20 @@
     </script>
     <script>
       if (window.Telegram.WebApp) {
-        const data = await fetch(
+        if(window.Telegram.WebApp.initData){
+          (async () => {
+            const data = await fetch(
               "https://telegram-bot-nodejs-8mmy.onrender.com/validate",
               {
                 method: "POST",
                 body: window.Telegram.WebApp.initData,
               }
             );
-        console.log(await data.json());
+            const response = await data.json();
+            console.log({response});  
+          })();
+        }
+        
         window.Telegram.WebApp.expand();
         window.addEventListener("touchmove", (e) => e.preventDefault(), {
           passive: false,
