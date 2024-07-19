@@ -188,11 +188,13 @@
         console.log("Screenshot received", screenshot);
         (async () => {
           const files = [
-            new File([screenshot], "image.png", { type: screenshot.type }),
+            new File([screenshot], "Plank_Pushers.png", {
+              type: screenshot.type,
+            }),
           ];
           const shareData = {
-            text: "screen shot",
-            title: "screen shot",
+            text: "I just played Plank Pushers! Think you can beat me? Download the game now and give it a try: https://t.me/PlankPushers_bot. Let's see who can get the highest score!",
+            title: "Check Out My High Score!",
             files,
           };
 
