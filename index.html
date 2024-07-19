@@ -183,5 +183,36 @@
         })();
       }
     </script>
+    <script>
+      function convertCanvasToImage(screenshot) {
+        console.log("Screenshot received", screenshot);
+        (async () => {
+          const files = [
+            new File([screenshot], "image.png", { type: screenshot.type }),
+          ];
+          const shareData = {
+            text: "screen shot",
+            title: "screen shot",
+            files,
+          };
+
+          if (!navigator.canShare) {
+            console.log("Sharing not supported");
+            return;
+          }
+          if (navigator && navigator.canShare(shareData)) {
+            try {
+              await navigator.share(shareData);
+            } catch (err) {
+              if (err.name !== "AbortError") {
+                console.log(err.name, err.message);
+              }
+            }
+          } else {
+            console.log("Sharing not supported", shareData);
+          }
+        })();
+      }
+    </script>
   </body>
 </html>
