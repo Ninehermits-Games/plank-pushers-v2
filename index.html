@@ -217,5 +217,16 @@
         })();
       }
     </script>
+    <script>
+      if (window.unityInstance) {
+        window.unityInstance.SendMessage(
+          "TelegramConnect",
+          "GetUserData",
+          JSON.stringify({
+            test: 1,
+          })
+        );
+      }
+    </script>
   </body>
 </html>
