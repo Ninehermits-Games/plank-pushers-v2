@@ -27,7 +27,8 @@ body {
 
 @media only screen and (max-width: 600px) {
   #unity-canvas {
-    height: 100vh;
+    /* height: 100vh; */
+    height: var(--tg-viewport-height, 100vh);
     /* Ensures full viewport height on mobile devices */
   }
 }
