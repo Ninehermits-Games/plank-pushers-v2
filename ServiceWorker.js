@@ -2,7 +2,7 @@ const cacheName = "DefaultCompany-Plank Pushers-0.9";
 const contentToCache = [
     "Build/build.loader.js",
     "Build/ef16dc947541906a9e05874f3f38ef8c.js",
-    "Build/1ebf3f59326f3462aaa2bb03b8f7b656.data",
+    "Build/11b3a584a066ff45fbd664d7980d6610.data",
     "Build/b07ce829252ec2d96c86ec3483aabc74.wasm",
     "TemplateData/style.css"
 
