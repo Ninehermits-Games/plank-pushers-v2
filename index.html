@@ -125,6 +125,32 @@
         })
           .then((unityInstance) => {
             loadingBar.style.display = "none";
+            const fitScreen = function () {
+              const body = document.body;
+              const docElement = document.documentElement;
+              if (body.dataset.scaled) {
+                window.scrollTo(0, +body.dataset.scaled);
+                delete body.dataset.scaled;
+                body.style.transform = "none";
+              } else {
+                const maxHeight = Math.max(
+                  body.scrollHeight,
+                  body.offsetHeight,
+                  docElement.clientHeight,
+                  docElement.scrollHeight,
+                  docElement.offsetHeight
+                );
+                const viewportHeight = Math.max(
+                  docElement.clientHeight,
+                  window.innerHeight || 0
+                );
+                const scaleFactor = viewportHeight / maxHeight;
+                body.style.transform = "scale(" + scaleFactor + ")";
+                body.dataset.scaled = window.scrollY;
+                window.scrollTo(0, maxHeight / 2 - viewportHeight / 2);
+              }
+            };
+            fitScreen();
           })
           .catch((message) => {
             alert(message);
@@ -133,31 +159,6 @@
       document.body.appendChild(script);
     </script>
     <script>
-      var fitScreen = function () {
-        var body = document.body;
-        var docElement = document.documentElement;
-        if (body.dataset.scaled) {
-          window.scrollTo(0, +body.dataset.scaled);
-          delete body.dataset.scaled;
-          body.style.transform = "none";
-        } else {
-          var maxHeight = Math.max(
-            body.scrollHeight,
-            body.offsetHeight,
-            docElement.clientHeight,
-            docElement.scrollHeight,
-            docElement.offsetHeight
-          );
-          var viewportHeight = Math.max(
-            docElement.clientHeight,
-            window.innerHeight || 0
-          );
-          var scaleFactor = viewportHeight / maxHeight;
-          body.style.transform = "scale(" + scaleFactor + ")";
-          body.dataset.scaled = window.scrollY;
-          window.scrollTo(0, maxHeight / 2 - viewportHeight / 2);
-        }
-      };
       if (window.Telegram.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
@@ -166,7 +167,6 @@
         });
         // window.scrollTo(0, 100);
         window.Telegram.WebApp.enableClosingConfirmation(true);
-        fitScreen();
       }
     </script>
     <script>
