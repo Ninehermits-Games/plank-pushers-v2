@@ -7,66 +7,72 @@ const contentToCache = [
   "TemplateData/style.css",
 ];
 
-// self.addEventListener('install', function (e) {
-//     console.log('[Service Worker] Install');
+self.addEventListener("install", function (e) {
+  console.log("[Service Worker] Install");
 
-// 	e.waitUntil(
-// 		caches.keys().then((cacheNames) => {
-// 		  return Promise.all(
-// 			cacheNames
-// 			  .filter((name) => {
-// 				return name !== cacheName;
-// 			  })
-// 			  .map((name) => {
-// 				console.log("[Service Worker] Deleting old cache:", name);
-// 				return caches.delete(name);
-// 			  })
-// 		  );
-// 		})
-// 	);
-
-//     e.waitUntil((async function () {
-//       const cache = await caches.open(cacheName);
-//       console.log('[Service Worker] Caching all: app shell and content');
-//       await cache.addAll(contentToCache);
-//     })());
-// });
-
-// self.addEventListener('fetch', function (e) {
-//     e.respondWith((async function () {
-//       let response = await caches.match(e.request);
-//       console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-//       if (response) { return response; }
-
-//       response = await fetch(e.request);
-//       const cache = await caches.open(cacheName);
-//       console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
-//       cache.put(e.request, response.clone());
-//       return response;
-//     })());
-// });
-
-self.addEventListener("install", (event) => {
-  // Skip waiting to activate immediately
-  self.skipWaiting();
-});
-
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
+  e.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          return caches.delete(cacheName);
-        })
+        cacheNames
+          .filter((name) => {
+            return name !== cacheName;
+          })
+          .map((name) => {
+            console.log("[Service Worker] Deleting old cache:", name);
+            return caches.delete(name);
+          })
       );
     })
   );
-});
 
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
+  e.waitUntil(
+    (async function () {
+      const cache = await caches.open(cacheName);
+      console.log("[Service Worker] Caching all: app shell and content");
+      await cache.addAll(contentToCache);
+    })()
   );
 });
+
+self.addEventListener("fetch", function (e) {
+  e.respondWith(
+    (async function () {
+      let response = await caches.match(e.request);
+      console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
+      if (response) {
+        return response;
+      }
+
+      response = await fetch(e.request);
+      const cache = await caches.open(cacheName);
+      console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
+      cache.put(e.request, response.clone());
+      return response;
+    })()
+  );
+});
+
+// self.addEventListener("install", (event) => {
+//   // Skip waiting to activate immediately
+//   self.skipWaiting();
+// });
+
+// self.addEventListener("activate", (event) => {
+//   event.waitUntil(
+//     caches.keys().then((cacheNames) => {
+//       return Promise.all(
+//         cacheNames.map((cacheName) => {
+//           return caches.delete(cacheName);
+//         })
+//       );
+//     })
+//   );
+// });
+
+// self.addEventListener("fetch", (event) => {
+//   event.respondWith(
+//     caches.match(event.request).then((response) => {
+//       return response || fetch(event.request);
+//     })
+//   );
+// });
