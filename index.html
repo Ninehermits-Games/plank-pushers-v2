@@ -70,7 +70,7 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/build.loader.js";
       var config = {
-        dataUrl: buildUrl + "/3046e1cc928e45e73e454fdd6ae17250.data",
+        dataUrl: buildUrl + "/726259e195bdd12b80a166ad7ea74cab.data",
         frameworkUrl: buildUrl + "/33914240831a51dbae2b1e3afa71f36c.js",
    cacheControl: function (url) {
      if (url.match(/\.data/) || url.match(/\.bundle/)) {
@@ -113,6 +113,23 @@
 		  progressBarValue.innerHTML = Math.round(100 * progress) + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+		  const fitScreen = function() {
+			const body = document.body;
+			const docElement = document.documentElement;
+			if(body.dataset.scaled) {
+				window.scrollTo(0, +body.dataset.scaled);
+				delete body.dataset.scaled;
+				body.style.transform = "none";
+			} else {
+				const maxHeight = Math.max(body.scrollHeight, body.offsetHeight, docElement.clientHeight, docElement.scrollHeight, docElement.offsetHeight);
+				const viewportHeight = Math.max(docElement.clientHeight, window.innerHeight || 0);
+				const scaleFactor = viewportHeight / maxHeight;
+				body.style.transform = "scale(" + scaleFactor + ")";
+				body.dataset.scaled = window.scrollY;
+				window.scrollTo(0, maxHeight / 2 - viewportHeight / 2);
+			}
+			};
+			fitScreen();
         }).catch((message) => {
           alert(message);
         });
@@ -120,31 +137,19 @@
       document.body.appendChild(script);
     </script>
 	 <script>
-	 var fitScreen = function() {
-    var body = document.body;
-    var docElement = document.documentElement;
-    if(body.dataset.scaled) {
-			window.scrollTo(0, +body.dataset.scaled);
-			delete body.dataset.scaled;
-			body.style.transform = "none";
-		} else {
-			var maxHeight = Math.max(body.scrollHeight, body.offsetHeight, docElement.clientHeight, docElement.scrollHeight, docElement.offsetHeight);
-			var viewportHeight = Math.max(docElement.clientHeight, window.innerHeight || 0);
-			var scaleFactor = viewportHeight / maxHeight;
-			body.style.transform = "scale(" + scaleFactor + ")";
-			body.dataset.scaled = window.scrollY;
-			window.scrollTo(0, maxHeight / 2 - viewportHeight / 2);
-		}
-	};
       if (window.Telegram.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
-        window.addEventListener("touchmove", (e) => e.preventDefault(), {
-          passive: false,
-        });
+        
         //window.scrollTo(0, 100);
         window.Telegram.WebApp.enableClosingConfirmation(true);
-		fitScreen();
+		if (window.Telegram.WebApp.isVersionAtLeast("7.7")) {
+			window.Telegram.WebApp.disableVerticalSwipes();
+		} else {
+			window.addEventListener("touchmove", (e) => e.preventDefault(), {
+				passive: false,
+			});
+		}
       }
     </script>
 	<script>
