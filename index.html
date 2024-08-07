@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Cache-Control" content="no-store, must-revalidate" />
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Cache-Control" content="no-store, must-revalidate" />
     <meta http-equiv="Content-Encoding" content="gzip" />
     <meta http-equiv="Expires" content="0" />
     <meta http-equiv="Pragma" content="no-cache" />
     <title>Plank Pushers</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <link rel="stylesheet" href="TemplateData/style.css" />
-    <link rel="manifest" href="manifest.webmanifest" />
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <link
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="manifest" href="manifest.webmanifest">
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+	 <link
       href="https://fonts.googleapis.com/css2?family=Slackey&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <div id="unity-container">
-      <canvas
-        id="unity-canvas"
-        width="1080"
-        height="1920"
-        tabindex="-1"
-      ></canvas>
+      <canvas id="unity-canvas" width=1080 height=1920 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
-          <div id="unity-progress-bar-value">0%</div>
+		  <div id="unity-progress-bar-value">0%</div>
         </div>
       </div>
-      <div id="unity-warning"></div>
+      <div id="unity-warning"> </div>
     </div>
     <script>
       window.addEventListener("load", function () {
@@ -44,9 +39,7 @@
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarValue = document.querySelector(
-        "#unity-progress-bar-value"
-      );
+	  var progressBarValue = document.querySelector("#unity-progress-bar-value");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var warningBanner = document.querySelector("#unity-warning");
 
@@ -58,18 +51,15 @@
       // user.
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length
-            ? "block"
-            : "none";
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
         }
-        var div = document.createElement("div");
+        var div = document.createElement('div');
         div.innerHTML = msg;
         warningBanner.appendChild(div);
-        if (type == "error") div.style = "background: red; padding: 10px;";
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
         else {
-          if (type == "warning")
-            div.style = "background: yellow; padding: 10px;";
-          setTimeout(function () {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
             warningBanner.removeChild(div);
             updateBannerVisibility();
           }, 5000);
@@ -80,16 +70,16 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/build.loader.js";
       var config = {
-        dataUrl: buildUrl + "/84e4804ae45e012a17eff9528429a91a.data",
+        dataUrl: buildUrl + "/3046e1cc928e45e73e454fdd6ae17250.data",
         frameworkUrl: buildUrl + "/33914240831a51dbae2b1e3afa71f36c.js",
-        cacheControl: function (url) {
-          if (url.match(/\.data/) || url.match(/\.bundle/)) {
-            return "must-revalidate";
-          }
-          // Disable explicit caching for all other files.
-          // Note: the default browser cache may cache them anyway.
-          return "no-store";
-        },
+   cacheControl: function (url) {
+     if (url.match(/\.data/) || url.match(/\.bundle/)) {
+         return "must-revalidate";
+     }
+     // Disable explicit caching for all other files.
+     // Note: the default browser cache may cache them anyway.
+     return "no-store";
+   },
         codeUrl: buildUrl + "/4d03ffe3743556d238c5527842d68189.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
@@ -107,11 +97,10 @@
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
-        var meta = document.createElement("meta");
-        meta.name = "viewport";
-        meta.content =
-          "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
-        document.getElementsByTagName("head")[0].appendChild(meta);
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
       }
 
       loadingBar.style.display = "block";
@@ -121,55 +110,44 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
-          progressBarValue.innerHTML = Math.round(100 * progress) + "%";
-        })
-          .then((unityInstance) => {
-            loadingBar.style.display = "none";
-            const fitScreen = function () {
-              const body = document.body;
-              const docElement = document.documentElement;
-              if (body.dataset.scaled) {
-                window.scrollTo(0, +body.dataset.scaled);
-                delete body.dataset.scaled;
-                body.style.transform = "none";
-              } else {
-                const maxHeight = Math.max(
-                  body.scrollHeight,
-                  body.offsetHeight,
-                  docElement.clientHeight,
-                  docElement.scrollHeight,
-                  docElement.offsetHeight
-                );
-                const viewportHeight = Math.max(
-                  docElement.clientHeight,
-                  window.innerHeight || 0
-                );
-                const scaleFactor = viewportHeight / maxHeight;
-                body.style.transform = "scale(" + scaleFactor + ")";
-                body.dataset.scaled = window.scrollY;
-                window.scrollTo(0, maxHeight / 2 - viewportHeight / 2);
-              }
-            };
-            fitScreen();
-          })
-          .catch((message) => {
-            alert(message);
-          });
+		  progressBarValue.innerHTML = Math.round(100 * progress) + "%";
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+        }).catch((message) => {
+          alert(message);
+        });
       };
       document.body.appendChild(script);
     </script>
-    <script>
+	 <script>
+	 var fitScreen = function() {
+    var body = document.body;
+    var docElement = document.documentElement;
+    if(body.dataset.scaled) {
+			window.scrollTo(0, +body.dataset.scaled);
+			delete body.dataset.scaled;
+			body.style.transform = "none";
+		} else {
+			var maxHeight = Math.max(body.scrollHeight, body.offsetHeight, docElement.clientHeight, docElement.scrollHeight, docElement.offsetHeight);
+			var viewportHeight = Math.max(docElement.clientHeight, window.innerHeight || 0);
+			var scaleFactor = viewportHeight / maxHeight;
+			body.style.transform = "scale(" + scaleFactor + ")";
+			body.dataset.scaled = window.scrollY;
+			window.scrollTo(0, maxHeight / 2 - viewportHeight / 2);
+		}
+	};
       if (window.Telegram.WebApp) {
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
         window.addEventListener("touchmove", (e) => e.preventDefault(), {
           passive: false,
         });
-        // window.scrollTo(0, 100);
+        //window.scrollTo(0, 100);
         window.Telegram.WebApp.enableClosingConfirmation(true);
+		fitScreen();
       }
     </script>
-    <script>
+	<script>
       eruda.init();
     </script>
   </body>
