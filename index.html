@@ -71,9 +71,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/build.loader.js";
       var config = {
-        dataUrl: buildUrl + "/908deb66c7e3d23f9cfd0577f63d37f9.data",
-        frameworkUrl: buildUrl + "/99e3df1afaf304837575c77077fdd569.js",
-        codeUrl: buildUrl + "/973b026c5cf3da67de0b340054a23484.wasm",
+        dataUrl: buildUrl + "/16c66bc04bea43ce04c188efbfc53c63.data",
+        frameworkUrl: buildUrl + "/58f7ddd23be3fc898566819ddf8b1269.js",
+        codeUrl: buildUrl + "/8eb8aaa3a7b934e443944d134cbdd877.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Plank Pushers",
@@ -130,15 +130,18 @@
 		  progressBarValue.innerHTML = Math.round(100 * progress) + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+		  window.unityInstance = unityInstance;
 		  window.fitScreen();
 		   
 			window.addEventListener('focus', function() {
-				unityInstance.SendMessage('GameManager', 'OnGameFocus', 'focused');
+				window.unityInstance.SendMessage('GameManager', 'OnGameFocus', 'focused');
 			});
 
 			window.addEventListener('blur', function() {
-				unityInstance.SendMessage('GameManager', 'OnGameFocus', 'blurred');
+				window.unityInstance.SendMessage('GameManager', 'OnGameFocus', 'blurred');
 			});
+			
+			
 			
 			
         }).catch((message) => {
