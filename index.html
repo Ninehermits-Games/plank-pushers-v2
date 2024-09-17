@@ -85,7 +85,7 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/build.loader.js";
     var config = {
-      dataUrl: buildUrl + "/c0c00a62a6a4b7e7551c587b6743721b.data",
+      dataUrl: buildUrl + "/88f623c254dbd9e4e2b2a4a83aea3474.data",
       frameworkUrl: buildUrl + "/60d116e699975fabd30d324414b671ed.js",
         codeUrl: buildUrl + "/9eeb4af837f95b366f2e3ed223030c55.wasm",
         streamingAssetsUrl: "StreamingAssets",
@@ -170,9 +170,9 @@
     if (window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
-	  window.Telegram.WebApp.setHeaderColor("#354C8A");
-      window.Telegram.WebApp.setBackgroundColor("#354C8A");
-      window.Telegram.WebApp.setBottomBarColor("#354C8A");
+	  //window.Telegram.WebApp.setHeaderColor("#354C8A");
+      //window.Telegram.WebApp.setBackgroundColor("#354C8A");
+      //window.Telegram.WebApp.setBottomBarColor("#354C8A");
       window.Telegram.WebApp.onEvent('invoiceClosed', async (object) => {
         console.log('#invoiceClosed', object);
         if (window.unityInstance) {
