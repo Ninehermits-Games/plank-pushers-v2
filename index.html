@@ -36,6 +36,8 @@
   <!-- End Google Tag Manager (noscript) -->
   <div id="unity-container">
     <canvas id="unity-canvas" width=1080 height=1920 tabindex="-1"></canvas>
+	
+	<div id="loading-text">Chill Broski loading may take a few moments. . .</div>
     <div id="unity-loading-bar">
       <div id="unity-progress-bar-empty">
         <div id="unity-progress-bar-full"></div>
@@ -54,6 +56,7 @@
     var container = document.querySelector("#unity-container");
     var canvas = document.querySelector("#unity-canvas");
     var loadingBar = document.querySelector("#unity-loading-bar");
+	var loadingText = document.querySelector("#loading-text");
     var progressBarValue = document.querySelector("#unity-progress-bar-value");
     var progressBarFull = document.querySelector("#unity-progress-bar-full");
     var warningBanner = document.querySelector("#unity-warning");
@@ -85,9 +88,9 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/build.loader.js";
     var config = {
-      dataUrl: buildUrl + "/c4e032731f0e4d8b19a4e60b7fa90805.data",
-      frameworkUrl: buildUrl + "/7345cf993620678f3196655db7c56138.js",
-        codeUrl: buildUrl + "/3821f11e25bc0c8e5406e3608a338afd.wasm",
+      dataUrl: buildUrl + "/de5f4f5b2df940e27ce89d9f6419ee8d.data",
+      frameworkUrl: buildUrl + "/964a0fb46717640abce9c78deb140da7.js",
+        codeUrl: buildUrl + "/e6b09eac03f28e4aa2a75039b6806928.wasm",
         streamingAssetsUrl: "StreamingAssets",
 		companyName: "DefaultCompany",
 		productName: "Plank Pushers",
@@ -135,6 +138,7 @@
     window.fitScreen = fitScreen;
 
     loadingBar.style.display = "block";
+	loadingText.style.display = "block";
 
     var script = document.createElement("script");
     script.src = loaderUrl;
@@ -144,6 +148,7 @@
         progressBarValue.innerHTML = Math.round(100 * progress) + "%";
       }).then((unityInstance) => {
         loadingBar.style.display = "none";
+		loadingText.style.display = "none";
         window.unityInstance = unityInstance;
         window.fitScreen();
 
