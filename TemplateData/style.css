@@ -16,19 +16,42 @@ body {
   background-size: cover;
 }
 
+/*
 @media only screen and (max-width: 600px) {
   #unity-canvas {
     height: var(--tg-viewport-height, 100vh);
   }
 }
+*/
+
+@media only screen and (max-width: 600px) {
+  #unity-container {
+    height: var(--tg-viewport-height, 100vh);
+  }
+}
 
 #loading-text {
-position: absolute;
+	position: absolute;
+	left: 50%;
+	top: 78%;
+	transform: translateX(-50%);
+	color: white;
+	font-family: "Slackey", sans-serif;
+	font-size: 11px;
+	text-align: center;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#version-text {
+	position: absolute;
     left: 50%;
-    top: 78%;
+	bottom: 1%;
     transform: translateX(-50%);
     color: white;
-    font-family: "Slackey", sans-serif;
+    font-family: "Solway", serif;
     font-size: 11px;
     text-align: center;
     width: 100%;

@@ -27,6 +27,7 @@
   <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
   <!--<script src="https://www.unpkg.com/web-animations-js@latest/web-animations.min.js"></script>-->
   <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -44,6 +45,7 @@
         <div id="unity-progress-bar-value">0%</div>
       </div>
     </div>
+	<div id="version-text">© PLANKPUSHERS | GROWSTUDIO | 2024<br>Ver<span id="version-number"></span>.24-0001A</div>
     <div id="unity-warning"> </div>
   </div>
   <script>
@@ -59,6 +61,7 @@
 	var loadingText = document.querySelector("#loading-text");
     var progressBarValue = document.querySelector("#unity-progress-bar-value");
     var progressBarFull = document.querySelector("#unity-progress-bar-full");
+	var versionText = document.querySelector("#version-text");
     var warningBanner = document.querySelector("#unity-warning");
 
     // Shows a temporary message banner/ribbon for a few seconds, or
@@ -88,15 +91,18 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/build.loader.js";
     var config = {
-      dataUrl: buildUrl + "/db685be5fbe690f0acce3373202e2669.data",
-      frameworkUrl: buildUrl + "/964a0fb46717640abce9c78deb140da7.js",
-        codeUrl: buildUrl + "/62c3642de498e75c79317afa3cc2d02c.wasm",
+      dataUrl: buildUrl + "/679090164dcf8fe0f9e2a0a24bfa4814.data",
+      frameworkUrl: buildUrl + "/faa0cfd481dc4bd32ade13313f202282.js",
+        codeUrl: buildUrl + "/4c5b8a6ce19de7bd6ce36c75eb2e8bbb.wasm",
         streamingAssetsUrl: "StreamingAssets",
 		companyName: "DefaultCompany",
 		productName: "Plank Pushers",
 		productVersion: "0.9",
 		showBanner: unityShowBanner,
       };
+	  
+	  // Set version number in the HTML dynamically
+    document.getElementById("version-number").innerText = config.productVersion;
 
     // By default Unity keeps WebGL canvas render target size matched with
     // the DOM size of the canvas element (scaled by window.devicePixelRatio)
@@ -139,6 +145,9 @@
 
     loadingBar.style.display = "block";
 	loadingText.style.display = "block";
+	versionText.style.display = "block";
+	
+	window.fitScreen();
 
     var script = document.createElement("script");
     script.src = loaderUrl;
@@ -149,8 +158,10 @@
       }).then((unityInstance) => {
         loadingBar.style.display = "none";
 		loadingText.style.display = "none";
+		versionText.style.display = "none";
         window.unityInstance = unityInstance;
-        window.fitScreen();
+        
+		window.fitScreen();
 
         if (window.unityInstance) {
           window.addEventListener('focus', function () {
