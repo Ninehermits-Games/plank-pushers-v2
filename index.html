@@ -25,6 +25,7 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
   <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+  <script src="https://unpkg.com/@okxconnect/tonsdk/dist/okxconnect_tonsdk.min.js"></script>
   <!--<script src="https://www.unpkg.com/web-animations-js@latest/web-animations.min.js"></script>-->
   <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -91,9 +92,9 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/build.loader.js";
     var config = {
-      dataUrl: buildUrl + "/a561bae469655b89362ba4911e7a9284.data",
-      frameworkUrl: buildUrl + "/dfbd8631757ebf45a99ebb30d9dd1b65.js",
-        codeUrl: buildUrl + "/9f795a1b57f2f8a890d0636b63c25ea1.wasm",
+      dataUrl: buildUrl + "/3123afc3b2e93068421b4adae374dccc.data",
+      frameworkUrl: buildUrl + "/d6ad2c6bc5c4ae191ddffe7ca02f8ad4.js",
+        codeUrl: buildUrl + "/ea76e1814c4b450c6e7a9bc1a5e48d01.wasm",
         streamingAssetsUrl: "StreamingAssets",
 		companyName: "DefaultCompany",
 		productName: "Plank Pushers",
@@ -142,6 +143,45 @@
       }
     };
     window.fitScreen = fitScreen;
+	
+	 const isSafariOrChrome = () => {
+          const userAgentInfo = navigator.userAgent;
+          const Agents = ["Safari", "Chrome"];
+          let flag = false;
+          for (let v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+              flag = true;
+              break;
+            }
+          }
+          return flag;
+        };
+	 window.isSafariOrChrome = isSafariOrChrome;
+	 
+	 const isPC = () => {
+          const userAgentInfo = navigator.userAgent;
+          console.log("current device ua is ===>", userAgentInfo);
+          const Agents = [
+            "Android",
+            "iPhone",
+            "SymbianOS",
+            "Windows Phone",
+            "iPad",
+            "iPod",
+          ];
+          let flag = true;
+          for (let v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+              flag = false;
+              break;
+            }
+          }
+          return flag;
+        };
+	 window.isPC = isPC;
+	
+	 
+	
 
     loadingBar.style.display = "block";
 	loadingText.style.display = "block";
