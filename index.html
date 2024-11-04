@@ -31,8 +31,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.socket.io/4.0.0/socket.io.js"></script>
   <!-- Socket.io -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js" integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="/socket.io/socket.io.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"
+    integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
@@ -42,15 +44,15 @@
   <!-- End Google Tag Manager (noscript) -->
   <div id="unity-container">
     <canvas id="unity-canvas" width=1080 height=1920 tabindex="-1"></canvas>
-	
-	<div id="loading-text">Chill Broski loading may take a few moments. . .</div>
+
+    <div id="loading-text">Chill Broski loading may take a few moments. . .</div>
     <div id="unity-loading-bar">
       <div id="unity-progress-bar-empty">
         <div id="unity-progress-bar-full"></div>
         <div id="unity-progress-bar-value">0%</div>
       </div>
     </div>
-	<div id="version-text">© PLANKPUSHERS | GROWSTUDIO | 2024<br>Ver<span id="version-number"></span>.24-0001A</div>
+    <div id="version-text">© PLANKPUSHERS | GROWSTUDIO | 2024<br>Ver<span id="version-number"></span>.24-0001A</div>
     <div id="unity-warning"> </div>
   </div>
   <script>
@@ -63,10 +65,10 @@
     var container = document.querySelector("#unity-container");
     var canvas = document.querySelector("#unity-canvas");
     var loadingBar = document.querySelector("#unity-loading-bar");
-	var loadingText = document.querySelector("#loading-text");
+    var loadingText = document.querySelector("#loading-text");
     var progressBarValue = document.querySelector("#unity-progress-bar-value");
     var progressBarFull = document.querySelector("#unity-progress-bar-full");
-	var versionText = document.querySelector("#version-text");
+    var versionText = document.querySelector("#version-text");
     var warningBanner = document.querySelector("#unity-warning");
 
     // Shows a temporary message banner/ribbon for a few seconds, or
@@ -98,15 +100,15 @@
     var config = {
       dataUrl: buildUrl + "/b8a05a0dfb160ba85a9e41d78f168203.data",
       frameworkUrl: buildUrl + "/a7bfd1120736e14c97942d217b07072f.js",
-        codeUrl: buildUrl + "/6c3781a8882d911e08350b3f742d39b4.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-		companyName: "DefaultCompany",
-		productName: "Plank Pushers",
-		productVersion: "0.9",
-		showBanner: unityShowBanner,
-      };
-	  
-	  // Set version number in the HTML dynamically
+      codeUrl: buildUrl + "/6c3781a8882d911e08350b3f742d39b4.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "Plank Pushers",
+      productVersion: "0.9",
+      showBanner: unityShowBanner,
+    };
+
+    // Set version number in the HTML dynamically
     document.getElementById("version-number").innerText = config.productVersion;
 
     // By default Unity keeps WebGL canvas render target size matched with
@@ -147,51 +149,51 @@
       }
     };
     window.fitScreen = fitScreen;
-	
-	 const isSafariOrChrome = () => {
-          const userAgentInfo = navigator.userAgent;
-          const Agents = ["Safari", "Chrome"];
-          let flag = false;
-          for (let v = 0; v < Agents.length; v++) {
-            if (userAgentInfo.indexOf(Agents[v]) > 0) {
-              flag = true;
-              break;
-            }
-          }
-          return flag;
-        };
-	 window.isSafariOrChrome = isSafariOrChrome;
-	 
-	 const isPC = () => {
-          const userAgentInfo = navigator.userAgent;
-          console.log("current device ua is ===>", userAgentInfo);
-          const Agents = [
-            "Android",
-            "iPhone",
-            "SymbianOS",
-            "Windows Phone",
-            "iPad",
-            "iPod",
-          ];
-          let flag = true;
-          for (let v = 0; v < Agents.length; v++) {
-            if (userAgentInfo.indexOf(Agents[v]) > 0) {
-              flag = false;
-              break;
-            }
-          }
-          return flag;
-        };
-	 window.isPC = isPC;
-	
-	 
-	
+
+    const isSafariOrChrome = () => {
+      const userAgentInfo = navigator.userAgent;
+      const Agents = ["Safari", "Chrome"];
+      let flag = false;
+      for (let v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+          flag = true;
+          break;
+        }
+      }
+      return flag;
+    };
+    window.isSafariOrChrome = isSafariOrChrome;
+
+    const isPC = () => {
+      const userAgentInfo = navigator.userAgent;
+      console.log("current device ua is ===>", userAgentInfo);
+      const Agents = [
+        "Android",
+        "iPhone",
+        "SymbianOS",
+        "Windows Phone",
+        "iPad",
+        "iPod",
+      ];
+      let flag = true;
+      for (let v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+          flag = false;
+          break;
+        }
+      }
+      return flag;
+    };
+    window.isPC = isPC;
+
+
+
 
     loadingBar.style.display = "block";
-	loadingText.style.display = "block";
-	versionText.style.display = "block";
-	
-	window.fitScreen();
+    loadingText.style.display = "block";
+    versionText.style.display = "block";
+
+    window.fitScreen();
 
     var script = document.createElement("script");
     script.src = loaderUrl;
@@ -201,16 +203,16 @@
         progressBarValue.innerHTML = Math.round(100 * progress) + "%";
       }).then((unityInstance) => {
         loadingBar.style.display = "none";
-		loadingText.style.display = "none";
-		versionText.style.display = "none";
+        loadingText.style.display = "none";
+        versionText.style.display = "none";
         window.unityInstance = unityInstance;
-        
-		window.fitScreen();
+
+        window.fitScreen();
 
         if (window.unityInstance) {
           window.addEventListener('focus', function () {
             window.unityInstance.SendMessage('GameManager', 'OnGameFocus', 'focused');
-			window.fitScreen();
+            window.fitScreen();
           });
 
           window.addEventListener('blur', function () {
@@ -218,27 +220,27 @@
           });
 
         }
-		
+
 
       }).catch((message) => {
         if (window.Telegram.WebApp) {
-              window.Telegram.WebApp.showPopup(
-                {
-                  title: 'Oops, something went wrong',
-                  message: 'Some error occurred: ',
-                },
-                function () {
-                    window.Telegram.WebApp.close();
-                  
-                }
-              );
-            } else {
-              // alert(message);
-				console.error(message);
-				window.setTimeout( function() {
-					window.location.reload();
-				}, 5000);
+          window.Telegram.WebApp.showPopup(
+            {
+              title: 'Oops, something went wrong',
+              message: 'Some error occurred: ',
+            },
+            function () {
+              window.Telegram.WebApp.close();
+
             }
+          );
+        } else {
+          // alert(message);
+          console.error(message);
+          window.setTimeout(function () {
+            window.location.reload();
+          }, 5000);
+        }
       });
     };
     document.body.appendChild(script);
@@ -247,22 +249,22 @@
     if (window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
-	  window.Telegram.WebApp.setHeaderColor("#603B80");
+      window.Telegram.WebApp.setHeaderColor("#603B80");
       window.Telegram.WebApp.setBackgroundColor("#603B80");
       window.Telegram.WebApp.setBottomBarColor("#603B80");
       window.Telegram.WebApp.onEvent('invoiceClosed', async (object) => {
         console.log('#invoiceClosed', object);
         if (window.unityInstance) {
-			if(object.status === "paid"){ // stars
-				// disable button
-				window.unityInstance.SendMessage("RequestHandler", "PremiumCheckerFunction");
-				//window.unityInstance.SendMessage("RequestHandler", "NotTask","3813-open-link-1726042474574");
-			  } else {
-				// enable button
-				console.log("stars closed");
-				window.unityInstance.SendMessage("GameManager", "TogglePayButtons", 1);
-			  }
-			}
+          if (object.status === "paid") { // stars
+            // disable button
+            window.unityInstance.SendMessage("RequestHandler", "PremiumCheckerFunction");
+            //window.unityInstance.SendMessage("RequestHandler", "NotTask","3813-open-link-1726042474574");
+          } else {
+            // enable button
+            console.log("stars closed");
+            window.unityInstance.SendMessage("GameManager", "TogglePayButtons", 1);
+          }
+        }
       });
       //window.scrollTo(0, 100);
       window.Telegram.WebApp.enableClosingConfirmation(true);
@@ -273,42 +275,42 @@
           passive: false,
         });
       }
-	  if(window.tonConnectUI){
-			const unsubscribeModal = window.tonConnectUI.onModalStateChange(
-				(state) => {
-					console.log({state});
-					if(state.state === "closed"){ // TON
-						// wallet closed
-						console.log("ton closed");
-						window.fitScreen();
-						window.unityInstance.SendMessage("GameManager", "TogglePayButtons", 1);
-						//console.log({closeReason : state.closeReason });
-					}
-				}
-			);
-			unsubscribeModal();
-		}
-		// Keys
-		// window.Telegram.WebApp.CloudStorage.getKeys(function (err, keys) {
-        //  if (err) {
-        //    console.log({ err });
-        //  } else {
-        //    console.log({ keys });
-        //   window.Telegram.WebApp.CloudStorage.getItems(
-        //      keys,
-        //      function (err, values) {
-        //        if (err) {
-        //          console.log({ err });
-        //        } else {
-        //          console.log({ values });
-        //        }
-        //      }
-        //    );
-        //  }
-        //});
+      if (window.tonConnectUI) {
+        const unsubscribeModal = window.tonConnectUI.onModalStateChange(
+          (state) => {
+            console.log({ state });
+            if (state.state === "closed") { // TON
+              // wallet closed
+              console.log("ton closed");
+              window.fitScreen();
+              window.unityInstance.SendMessage("GameManager", "TogglePayButtons", 1);
+              //console.log({closeReason : state.closeReason });
+            }
+          }
+        );
+        unsubscribeModal();
+      }
+      // Keys
+      // window.Telegram.WebApp.CloudStorage.getKeys(function (err, keys) {
+      //  if (err) {
+      //    console.log({ err });
+      //  } else {
+      //    console.log({ keys });
+      //   window.Telegram.WebApp.CloudStorage.getItems(
+      //      keys,
+      //      function (err, values) {
+      //        if (err) {
+      //          console.log({ err });
+      //        } else {
+      //          console.log({ values });
+      //        }
+      //      }
+      //    );
+      //  }
+      //});
     }
   </script>
-   <!--<script>eruda.init();</script>  -->
+  <!--<script>eruda.init();</script>  -->
   <!-- <div id="ton-connect"></div> -->
 </body>
 
