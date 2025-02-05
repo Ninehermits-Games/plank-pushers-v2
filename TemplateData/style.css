@@ -31,33 +31,33 @@ body {
 }
 
 #loading-text {
-	position: absolute;
-	left: 50%;
-	top: 78%;
-	transform: translateX(-50%);
-	color: white;
-	font-family: "Slackey", sans-serif;
-	font-size: 11px;
-	text-align: center;
-	width: 100%;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  transform: translateX(-50%);
+  color: white;
+  font-family: "Slackey", sans-serif;
+  font-size: 11px;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #version-text {
-	position: absolute;
-    left: 50%;
-	bottom: 1%;
-    transform: translateX(-50%);
-    color: white;
-    font-family: "Solway", serif;
-    font-size: 11px;
-    text-align: center;
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  position: absolute;
+  left: 50%;
+  bottom: 1%;
+  transform: translateX(-50%);
+  color: white;
+  font-family: "Solway", serif;
+  font-size: 11px;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #unity-loading-bar {
@@ -114,4 +114,27 @@ body {
   background: white;
   padding: 10px;
   display: none;
+}
+
+#webFrame {
+  display: none;
+  position: absolute; /* Ensures it covers the entire screen */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full viewport width */
+  height: 100%; /* Full viewport height */
+  background: white;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */ 
+}
+#closeButton {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  padding: 5px 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
 }

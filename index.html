@@ -52,6 +52,8 @@
     </div>
 	<div id="version-text">© PLANKPUSHERS | GROWSTUDIO | 2024<br>Ver<span id="version-number"></span>.24-0001A</div>
     <div id="unity-warning"> </div>
+	<iframe id="webFrame" src=""></iframe>
+    <button id="closeButton" onclick="CloseWebFrame()">Close</button>
   </div>
   <script>
     window.addEventListener("load", function () {
@@ -96,9 +98,9 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/build.loader.js";
     var config = {
-      dataUrl: buildUrl + "/0ac15b9f4c59f967b51c28bf1151a076.data",
-      frameworkUrl: buildUrl + "/d1f28ada369237224cdb2da285d32279.js",
-        codeUrl: buildUrl + "/26c61256caacbaac3f5d139aebf0aebe.wasm",
+      dataUrl: buildUrl + "/d194401dc6b08e89c7337c29dc085027.data.br",
+      frameworkUrl: buildUrl + "/da49e3d94fdaf8a6fbb57f5aea7f90da.js.br",
+        codeUrl: buildUrl + "/0de4a3b0228b59c58ccfede06654458d.wasm.br",
         streamingAssetsUrl: "StreamingAssets",
 		companyName: "DefaultCompany",
 		productName: "Plank Pushers",
@@ -308,6 +310,23 @@
         //});
     }
   </script>
+  <script>
+        function OpenWebFrame(url) {
+            let webFrame = document.getElementById("webFrame");
+            let closeButton = document.getElementById("closeButton");
+            webFrame.src = url;
+            webFrame.style.display = "block";
+            closeButton.style.display = "block";
+        }
+
+        function CloseWebFrame() {
+            let webFrame = document.getElementById("webFrame");
+            let closeButton = document.getElementById("closeButton");
+            webFrame.style.display = "none";
+            closeButton.style.display = "none";
+            webFrame.src = "";
+        }
+    </script>
    <!--<script>eruda.init();</script>  -->
   <!-- <div id="ton-connect"></div> -->
 </body>
