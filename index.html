@@ -52,8 +52,18 @@
     </div>
 	<div id="version-text">© PLANKPUSHERS | GROWSTUDIO | 2024<br>Ver<span id="version-number"></span>.24-0001A</div>
     <div id="unity-warning"> </div>
-	<iframe id="webFrame" src=""></iframe>
-    <button id="closeButton" onclick="CloseWebFrame()">Close</button>
+	<!-- <iframe id="webFrame" src=""></iframe>
+	<button id="closeButton" onclick="CloseWebFrame()">&times;
+	</button> -->
+	<div id="iframeContainer">
+		<div id="iframeHeader">
+			<button id="backButton" onclick="CloseWebFrame()">&#x2190;</button>
+			<span id="iframeTitle">Page Title</span>
+		</div>
+		<iframe id="webFrame" src=""  onload="hideSpinner()"></iframe>
+		<div id="loadingSpinner" class="spinner"></div>
+	</div>
+		
   </div>
   <script>
     window.addEventListener("load", function () {
@@ -98,9 +108,9 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/build.loader.js";
     var config = {
-      dataUrl: buildUrl + "/345ea1812aab526fe9e9dcddcf9edfdc.data",
-      frameworkUrl: buildUrl + "/07acec1dd2f29106ec70e9c4e9a6894f.js",
-        codeUrl: buildUrl + "/cda5fef35b3dc8bb9b12d794f6fbf7a4.wasm",
+      dataUrl: buildUrl + "/36add6313cc76e7129d42a2e754010b3.data",
+      frameworkUrl: buildUrl + "/36518a1537dc9f3028b61c67f970fbf4.js",
+        codeUrl: buildUrl + "/428804e0453be87d461ca06aa676972f.wasm",
         streamingAssetsUrl: "StreamingAssets",
 		companyName: "DefaultCompany",
 		productName: "Plank Pushers",
@@ -311,21 +321,15 @@
     }
   </script>
   <script>
-        function OpenWebFrame(url) {
-            let webFrame = document.getElementById("webFrame");
-            let closeButton = document.getElementById("closeButton");
-            webFrame.src = url;
-            webFrame.style.display = "block";
-            closeButton.style.display = "block";
-        }
-
-        function CloseWebFrame() {
-            let webFrame = document.getElementById("webFrame");
-            let closeButton = document.getElementById("closeButton");
-            webFrame.style.display = "none";
-            closeButton.style.display = "none";
-            webFrame.src = "";
-        }
+		function CloseWebFrame() {
+				document.getElementById("iframeContainer").style.display = "none";
+				document.getElementById("unity-canvas").style.display = "block";
+				document.getElementById("webFrame").src = "";
+			}
+			function hideSpinner() {
+  // Hide the loading spinner when the iframe content is fully loaded
+  document.getElementById("loadingSpinner").style.display = "none";
+}
     </script>
    <!--<script>eruda.init();</script>  -->
   <!-- <div id="ton-connect"></div> -->
